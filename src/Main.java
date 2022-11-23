@@ -22,25 +22,26 @@ public class Main {
 
         Student[] students={student,student1,student2};
 
-        Student studenting = new Student();
+
         System.out.println(" Oll Students : ");
-        studenting.getOllStudents(students);
+        System.out.println(Arrays.toString(Student.getOllStudents(students)));
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println(" Male Gender : ");
-        studenting.getStudentGenderMale(students);
+        System.out.println(Arrays.toString(Student.getStudentGenderMale(students)));
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println(" Female Gender :");
-        studenting.getStudentGenderFemale(students);
+        System.out.println(Arrays.toString(Student.getStudentGenderFemale(students)));
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println(" Enter by name :");
         String name = new Scanner(System.in).nextLine();
-        studenting.findByName(students,name);
+        System.out.println(Arrays.toString(Student.findByName(students, name)));
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println(" Sort Oll Ages : ");
-        studenting.sortOllAges(students);
+        System.out.println(Arrays.toString(Student.sortOllAges(students)));
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println(" Student last Name :");
-        studenting.getLastName(students);
-
+        System.out.println(student.getLastName());
+        System.out.println(student1.getLastName());
+        System.out.println(student2.getLastName());
     }
 }

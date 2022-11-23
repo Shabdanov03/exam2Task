@@ -1,7 +1,7 @@
 import java.util.Arrays;
 
 public class Student {
-    private  String email;
+    private String email;
     private String fullName;
     private int age;
     private String emile;
@@ -10,25 +10,22 @@ public class Student {
     public Student(String fullName, int age, String email, Gender gender) {
         this.fullName = fullName;
         chekcAge(age);
-        this.gender=gender;
-       chekcEmail(email);
+        this.gender = gender;
+        chekcEmail(email);
     }
 
-    private void chekcAge(int age){
-        if (age>0&&age<150){
-            this.age=age;
-        }
-        else System.out.println(" invalid age :");
+    private void chekcAge(int age) {
+        if (age > 0 && age < 150) {
+            this.age = age;
+        } else System.out.println(" invalid age :");
     }
-    private void chekcEmail(String email){
-        if (email.contains("@")){
-            this.email=email;
-        }
-        else System.out.println(" invalid email :");
-    }
-    public Student() {
 
+    private void chekcEmail(String email) {
+        if (email.contains("@")) {
+            this.email = email;
+        } else System.out.println(" invalid email :");
     }
+
 
     public String getFullName() {
         return fullName;
@@ -62,34 +59,51 @@ public class Student {
         this.gender = gender;
     }
 
-    public void getOllStudents(Student[] students) {
-        for (Student student : students) {
-            System.out.println(student);
-        }
+    public static Student[] getOllStudents(Student[] students) {
+        return students;
     }
 
-    public void getStudentGenderMale(Student[] students) {
+    public static Student[] getStudentGenderMale(Student[] students) {
+        int counter = 0;
         for (Student student : students) {
-            if (student.getGender().equals(Gender.M)) System.out.println(student);
+            if (student.getGender().equals(Gender.M)) counter++;
         }
-    }
-
-    public void getStudentGenderFemale(Student[] students) {
+        Student[] arrayM=new Student[counter];
+        int index = 0;
         for (Student student : students) {
-            if (student.getGender().equals(Gender.F)) System.out.println(student);
-
-        }
-    }
-
-    public void findByName(Student[] students, String name) {
-        for (Student student : students) {
-            if (student.getFullName().contains(name)) {
-                System.out.println(student);
+            if (student.getGender().equals(Gender.M)) {
+                arrayM[index]=student;
             }
         }
+        return students;
+
     }
 
-    public void sortOllAges(Student[] students) {
+    public static Student[] getStudentGenderFemale(Student[] students) {
+        int counter = 0;
+        for (Student student : students) {
+            if (student.getGender().equals(Gender.F)) counter++;
+        }
+        Student[] arrayF=new Student[counter];
+        int index = 0;
+        for (Student student : students) {
+            if (student.getGender().equals(Gender.F)) {
+                arrayF[index]=student;
+            }
+        }
+        return students;
+
+    }
+
+    public static Student[] findByName(Student[] students, String name) {
+        for (Student student : students) {
+            if (student.getFullName().contains(name)) {
+                return new Student[]{student};
+            }
+        }return null;
+    }
+
+    public static Student[] sortOllAges(Student[] students) {
         int[] arrayAges = new int[students.length];
         int index = 0;
         for (Student student : students) {
@@ -97,29 +111,32 @@ public class Student {
             index++;
         }
         Arrays.sort(arrayAges);
+        Student[] studentsSort = new Student[students.length];
         for (int i = 0; i < students.length; i++) {
-            for (int j = 0; j < students.length; j++) {
-                if (students[j].getAge() == arrayAges[i]) {
-                    System.out.println(students[j].getFullName() + " " + students[j].getAge());
+            for (Student student : students) {
+                if (student.getAge() == arrayAges[i]) {
+                    studentsSort[i] = student;
+
                 }
             }
 
-        }
+        }return studentsSort;
     }
 
-    public void getLastName(Student[] students) {
-        for (Student student : students) {
-            String[] array = student.getFullName().split(" ");
-            for (int i = 1; i < array.length; i++) {
-                System.out.println(array[i]);
-            }
-            }
+    public  String getLastName() {
+     String[] name = getFullName().split(" ");
+     String lastName="";
+        for (int i = 0; i < name.length-1; i++) {
+            lastName="%s %s".formatted(lastName,name[i]);
         }
+        lastName = lastName.trim();
+     return lastName;
+    }
 
 
     @Override
     public String toString() {
-        return  " Student  => " +
+        return " Student  => " +
                 " fullName='" + fullName + '\'' +
                 " age = " + age +
                 " emile = '" + email + '\'' +
